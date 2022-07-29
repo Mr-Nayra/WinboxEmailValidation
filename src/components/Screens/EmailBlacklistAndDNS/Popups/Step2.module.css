@@ -1,0 +1,51 @@
+.flexend {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.flexcenterrow {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.parah {
+  font-size: 1.41vh;
+  color: #707683;
+  display: inline;
+}
+
+.input {
+  margin: 0.5vh 1vw 0 0;
+  border: 1.5px solid #ebeff2;
+  padding: 0.75vh 1vw;
+  border-radius: 0.5vh;
+  width: 70%;
+  font-size: 1.88vh;
+  color: #323c47;
+  font-weight: 400;
+}
+
+.button {
+  border: 1px solid #0415AA;
+  background: #0415AA;
+  color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  font-weight: 600;
+  height: 5.2vh;
+  width: 120px;
+  font-size: 1.65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover,
+.button:active {
+  background: #041186;
+  border-color: #041186;
+}

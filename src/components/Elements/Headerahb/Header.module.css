@@ -1,0 +1,59 @@
+.background {
+  height: 9.15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1vw;
+}
+
+.flex {
+  height: 9.15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.link {
+  margin-left: 0.5vw;
+  text-decoration: none;
+  color: #0415AA;
+}
+
+.parah {
+  font-size: 1.6vh;
+  font-weight: 500;
+}
+
+.back {
+  background: none;
+  border: none;
+  margin-right: 1vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  transform: rotate(90deg);
+}
+
+.goBackButton {
+  border-radius: 50px;
+  background: none;
+  border: none;
+  height: 4vh;
+  width: 4vh;
+}
+
+.goBackButton:hover {
+  background: #fafafb;
+}

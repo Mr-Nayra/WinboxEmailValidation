@@ -1,0 +1,41 @@
+.modalClass{
+  width: 30vw;
+}
+
+.parah {
+  font-weight: 400;
+  font-size: 1.6vh;
+  color: #707683;
+  text-align: center;
+}
+
+.heading{
+  text-align: center;
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.tail{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tail div{
+  margin: 1vh 0;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons div{
+  padding: 1vh 2vw 2vh 2vw;
+}

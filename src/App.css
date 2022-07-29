@@ -1,0 +1,11 @@
+.container {
+  background: #f5f6f8;
+  top: 0;
+  height: 100vh;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2.5vh 1vw;
+  flex: 1;
+}

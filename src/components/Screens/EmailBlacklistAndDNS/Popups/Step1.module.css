@@ -1,0 +1,37 @@
+.flexend {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.flexcenterrow {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.inputContainer {
+    margin: 1vh 0 3vh 0;
+}
+
+.input {
+    margin: 0.5vh 0 0 0;
+    border: 1.5px solid #ebeff2;
+    padding: 1.5vh 1vw;
+    border-radius: 0.5vh;
+    width: 70%;
+}
+
+.parah {
+    font-size: 1.41vh;
+    color: #707683;
+    display: inline;
+}
+
+.asterik {
+    font-size: 1.41vh;
+    color: #de5246;
+    display: inline;
+}
