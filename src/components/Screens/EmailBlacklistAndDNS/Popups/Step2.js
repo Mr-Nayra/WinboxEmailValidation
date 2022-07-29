@@ -9,9 +9,15 @@ import Heading145 from "../../../UI/Heading/Heading";
 
 const Runtest = (props) => {
   const [file, setFile] = useState("No file selected");
+  const [error, setError] = useState("");
 
   const uploadFileHandler = (event) => {
-    setFile(event.target.files[0].name);
+    const extn = event.target.files[0].name.split(".").pop;
+    if (extn === "xls" || extn === "xls" || extn === "xls") {
+      setFile(event.target.files[0].name);
+    } else {
+      setError(" please choose correct file type");
+    }
   };
 
   return (
@@ -26,11 +32,10 @@ const Runtest = (props) => {
         </div>
         {props.software === "Excel/CSV" ? (
           <div>
-            <Heading145>xls,xlsx and csv file supported:</Heading145>
             <div>
               <p className={classes.parah}>Upload a file</p>
             </div>
-            <div class="inputfile-box">
+            <div>
               <input
                 type="file"
                 id="file"
@@ -38,16 +43,23 @@ const Runtest = (props) => {
                 onChange={uploadFileHandler}
               />
               <label
-                for="file"
+                htmlFor="file"
                 style={{
                   display: "flex",
-                  marginTop: "1vh",
+                  marginBottom: "1vh",
                   alignItems: "center",
                 }}
               >
                 <div className={classes.input}>{file}</div>
-                <div class={classes.button}>Select File</div>
+                <div className={classes.button}>Select File</div>
               </label>
+              <p
+                className={classes.error}
+                style={{ visibility: error ? "visible" : "hidden" }}
+              >
+                {error || "hi"}
+              </p>
+              <Heading145>Note: xls,xlsx and csv file supported</Heading145>
             </div>
           </div>
         ) : (
@@ -62,7 +74,7 @@ const Runtest = (props) => {
             Prev
           </BlueButton>
           <Button onClick={props.close.function.bind(this, props.close.value)}>
-            Finish
+            Upload
           </Button>
         </div>
       </Modal>

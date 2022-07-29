@@ -38,7 +38,7 @@ const MainBar = () => {
 
       <Hero
         heading="Email Validation"
-        buttontext="Add new button"
+        buttontext="Import Data"
         onClick={renderPopUp.bind(this, "1")}
         value="1"
       />

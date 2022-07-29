@@ -8,6 +8,7 @@ import MessageIcon from "./icons/MessageIcon";
 import QuestionIcon from "./icons/QuestionIcon";
 import SettingsIcon from "./icons/SettingsIcon";
 import SheildIcon from "./icons/SheildIcon";
+import LayersIcon from "./icons/LayersIcon";
 import Button3 from "./Button3";
 
 const SideBar = (props) => {
@@ -45,6 +46,18 @@ const SideBar = (props) => {
               isOpen={props.isOpen}
             >
               <MessageIcon />
+            </Button3>
+          </NavLink>
+          <NavLink
+            className={classes.removestyle}
+            to="/email-blacklist-and-DNS-checker"
+          >
+            <Button3
+              parah="Blacklists & DNS Checker"
+              selected={path === "email-blacklist-and-DNS-checker" ? 1 : 0}
+              isOpen={props.isOpen}
+            >
+              <SheildIcon />
             </Button3>
           </NavLink>
           <NavLink
