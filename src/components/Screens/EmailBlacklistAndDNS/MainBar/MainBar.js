@@ -6,6 +6,7 @@ import Details from "../../../Elements/Details0/Details";
 import Step2 from "../Popups/Step2";
 import Row from "../Row/Row";
 import Step1 from "../Popups/Step1";
+import DownloadResults from "../Popups/DownloadResults";
 
 var software;
 
@@ -21,6 +22,7 @@ const MainBar = () => {
 
   return (
     <>
+      <DownloadResults close={{ function: renderPopUp, value: "0" }} />
       {showPopUp === "1" && (
         <Step1
           close={{ function: renderPopUp, value: "0" }}

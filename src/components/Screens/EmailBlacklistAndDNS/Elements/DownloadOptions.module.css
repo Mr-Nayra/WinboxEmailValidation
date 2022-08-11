@@ -1,0 +1,26 @@
+.flexrow {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    margin-right: 0.5vw;
+}
+
+.button {
+    width: 24%;
+    padding: 2vh 0;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 2.2vh;
+    margin-bottom: 1vh;
+    color: #323c47;
+}
+
+.button {
+    background-color: inherit;
+    border: 1px solid #707683;
+    border-radius: 4px
+}

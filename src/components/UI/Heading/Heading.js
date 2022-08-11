@@ -2,7 +2,10 @@ import classes from "./Heading.module.css";
 
 export const Heading145 = (props) => {
   return (
-    <h3 className={`${props.className}  ${classes.heading} `}>
+    <h3
+      className={`${props.className}  ${classes.heading} `}
+      style={props.style}
+    >
       {props.children}
     </h3>
   );

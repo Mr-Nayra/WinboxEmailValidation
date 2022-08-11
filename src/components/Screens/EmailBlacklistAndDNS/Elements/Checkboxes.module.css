@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    margin: 1vh 0;
+}
+
+.flexrow {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    margin-right: 0.5vw;
+}
+
+.parah {
+    color: #707683;
+    font-size: 1.4vh;
+    font-weight: 400;
+    margin-top: 0.5vh;
+}
