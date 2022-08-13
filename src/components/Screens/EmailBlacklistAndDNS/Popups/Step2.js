@@ -16,18 +16,19 @@ const Runtest = (props) => {
   const [loading, setloading] = useState(false);
 
   const uploadFileHandler = (event) => {
-    const extn = event.target.files[0].name.split(".").pop;
-    if (extn === "xls" || extn === "xls" || extn === "xls") {
+    const extn = event.target.files[0].name.split(".").pop();
+    if (extn === "csv" || extn === "xlsx" || extn === "xls") {
       setFile(event.target.value);
       setFileData(event.target.files[0]);
       disabled = false;
     } else {
       setFile("");
-      setFileData("No file selected");
+      setFileData("");
       disabled = true;
       setError("Please choose correct file type");
     }
   };
+  console.log(disabled);
 
   const saveHandler = () => {
     setloading(true);
@@ -42,8 +43,6 @@ const Runtest = (props) => {
       // }),
       redirect: "follow",
     };
-
-    delete requestOptions.headers["Content-Type"];
 
     fetch(
       "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/",
@@ -60,7 +59,7 @@ const Runtest = (props) => {
         if (JSON.parse(result).status === "success") {
           setError("File Uploaded successfully");
           setFile("");
-          setFileData("No file selected");
+          setFileData("");
           disabled = true;
         } else {
           setError("Opps! Something went wrong");
@@ -104,7 +103,9 @@ const Runtest = (props) => {
                 }}
               >
                 <div className={classes.input}>
-                  {fileData ? fileData.name : "No files Selected"}
+                  {fileData && fileData !== ""
+                    ? fileData.name
+                    : "No files Selected"}
                 </div>
                 <div className={classes.button}>Select File</div>
               </label>
