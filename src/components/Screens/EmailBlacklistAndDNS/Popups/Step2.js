@@ -7,17 +7,69 @@ import Button from "../../../UI/Button/Button";
 import BlueButton from "../../../UI/BlueButton/Button";
 import Heading145 from "../../../UI/Heading/Heading";
 
+let disabled = true;
+
 const Runtest = (props) => {
-  const [file, setFile] = useState("No file selected");
+  const [file, setFile] = useState("");
+  const [fileData, setFileData] = useState();
   const [error, setError] = useState("");
+  const [loading, setloading] = useState(false);
 
   const uploadFileHandler = (event) => {
     const extn = event.target.files[0].name.split(".").pop;
     if (extn === "xls" || extn === "xls" || extn === "xls") {
-      setFile(event.target.files[0].name);
+      setFile(event.target.value);
+      setFileData(event.target.files[0]);
+      disabled = false;
     } else {
-      setError(" please choose correct file type");
+      setFile("");
+      setFileData("No file selected");
+      disabled = true;
+      setError("Please choose correct file type");
     }
+  };
+
+  const saveHandler = () => {
+    setloading(true);
+    var formdata = new FormData();
+    formdata.append("file", fileData);
+
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      // headers: new Headers({
+      //   Authorization: `Bearer ${authtoken}`,
+      // }),
+      redirect: "follow",
+    };
+
+    delete requestOptions.headers["Content-Type"];
+
+    fetch(
+      "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/",
+      requestOptions
+    )
+      .then((response) => {
+        if (response.status === 401) {
+          window.location.reload();
+        }
+        return response.text();
+      })
+      .then((result) => {
+        setloading(false);
+        if (JSON.parse(result).status === "success") {
+          setError("File Uploaded successfully");
+          setFile("");
+          setFileData("No file selected");
+          disabled = true;
+        } else {
+          setError("Opps! Something went wrong");
+        }
+      })
+      .catch(() => {
+        setloading(false);
+        setError("Opps! Something went wrong");
+      });
   };
 
   return (
@@ -40,6 +92,7 @@ const Runtest = (props) => {
                 type="file"
                 id="file"
                 style={{ display: "none" }}
+                value={file}
                 onChange={uploadFileHandler}
               />
               <label
@@ -50,7 +103,9 @@ const Runtest = (props) => {
                   alignItems: "center",
                 }}
               >
-                <div className={classes.input}>{file}</div>
+                <div className={classes.input}>
+                  {fileData ? fileData.name : "No files Selected"}
+                </div>
                 <div className={classes.button}>Select File</div>
               </label>
               <p
@@ -73,9 +128,18 @@ const Runtest = (props) => {
           >
             Prev
           </BlueButton>
-          <Button onClick={props.close.function.bind(this, props.close.value)}>
-            Upload
-          </Button>
+          {loading ? (
+            <div
+              className={classes.flexcenter}
+              style={{ width: "120px", margin: "0" }}
+            >
+              <div className="buttonLoading"></div>
+            </div>
+          ) : (
+            <Button onClick={saveHandler} disabled={disabled}>
+              Upload
+            </Button>
+          )}
         </div>
       </Modal>
     </>

@@ -1,6 +1,6 @@
 .flexrow {
     display: flex;
-    align-items: center;
+    align-items: stretch
 }
 
 .input {
