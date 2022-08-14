@@ -11,7 +11,7 @@ const ColHead = (props) => {
   };
 
   return (
-    <div className={`${classes.flex} ${props.className}`}>
+    <div className={`${classes.flex} ${props.className}`} style={props.style}>
       <div>
         <p className={classes.para}>{props.children}</p>
       </div>

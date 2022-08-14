@@ -132,9 +132,7 @@ const DownloadResults = (props) => {
         items )
       </Heading145>
       <div className={classes.flexspace} style={{ marginTop: "3vh" }}>
-        <BlueButton
-          onClick={props.close.function.bind(this, props.close.value)}
-        >
+        <BlueButton onClick={props.close.function} value={props.close.value}>
           Close
         </BlueButton>
         {loading ? (

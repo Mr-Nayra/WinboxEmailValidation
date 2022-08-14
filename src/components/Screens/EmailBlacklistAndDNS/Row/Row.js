@@ -73,16 +73,15 @@ const Row = (props) => {
         <p className={classes.head}>{props.status}</p>
         <p className={classes.head}>{props.created}</p>
         <p className={classes.head}>{props.total}</p>
-        <p className={classes.head}>{props.deliverable}</p>
-        <p className={classes.head}>{props.risky}</p>
-        <p className={classes.head}>{props.undeliverable}</p>
-        <p className={classes.head}>{props.unknown}</p>
+        <p className={classes.head} style={{ flex: 5 }}>
+          {props.deliverable}
+        </p>
         <div className={classes.head2}>
-          {/* {props.status === "Completed" && ( */}
-          <button className={classes.button} onClick={PopUpHandler} value="2">
-            <DownloadIcon />
-          </button>
-          {/* )} */}
+          {props.status === "Completed" && (
+            <button className={classes.button} onClick={PopUpHandler} value="2">
+              <DownloadIcon />
+            </button>
+          )}
           <button className={classes.button} onClick={PopUpHandler} value="1">
             <DeleteIcon />
           </button>
