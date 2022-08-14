@@ -60,6 +60,7 @@ const Runtest = (props) => {
         if (JSON.parse(result).status === "success") {
           setSuccess(true);
           setTimeout(props.close.function.bind(this, props.close.value), 1500);
+          props.rerenderer();
           setFile("");
           setFileData("");
           disabled = true;

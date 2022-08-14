@@ -15,8 +15,13 @@ const MainBar = () => {
   // const history = useHistory();
 
   const [showPopUp, setShowPopUp] = useState("0");
+  const [rerender, setRerender] = useState(0);
   const [loading, setLoading] = useState(true);
   const [da, setDa] = useState([]);
+
+  const rerenderer = () => {
+    setRerender((prev) => prev + 1);
+  };
 
   useLayoutEffect(() => {
     setLoading(true);
@@ -36,7 +41,7 @@ const MainBar = () => {
       }
     };
     request.send();
-  }, []);
+  }, [rerender]);
 
   const renderPopUp = (value, s) => {
     if (s) {
@@ -226,6 +231,7 @@ const MainBar = () => {
       {showPopUp === "2" && (
         <Step2
           software={software}
+          rerenderer={rerenderer}
           close={{ function: renderPopUp, value: "0" }}
           prev={{ function: renderPopUp, value: "1" }}
           next={{ function: renderPopUp, value: "0" }}
