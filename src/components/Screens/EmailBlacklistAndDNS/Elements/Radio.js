@@ -22,7 +22,7 @@ const Checkboxes = (props) => {
           <Heading145>CSV</Heading145>
         </div>
         <p className={classes.parah}>
-          Comma-seperated values on ubiquitos format conpatible with most
+          Comma-seperated values on ubiquitos format compatible with most
           spreadsheets and database softwares
         </p>
       </div>

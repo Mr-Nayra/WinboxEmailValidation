@@ -18,6 +18,8 @@ const DownloadResults = (props) => {
   const [downloadEverything, setDownloadEverything] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState(1);
 
+  console.log(selectedFormat);
+
   const downloadEverythingHandler = () => {
     setDownloadEverything((prev) => {
       if (!prev) {
@@ -36,7 +38,6 @@ const DownloadResults = (props) => {
     undeliverable && a.push("Risky");
     unknown && a.push("Undeliverable");
     risky && a.push("Unknown");
-    console.log(a);
 
     setLoading(true);
     var formdata = new FormData();
@@ -67,7 +68,14 @@ const DownloadResults = (props) => {
         setLoading(false);
         var a = document.createElement("a");
         a.href = window.URL.createObjectURL(data);
-        a.download = props.file_name;
+        a.download =
+          props.file_name.split(".")[0] +
+          "." +
+          (selectedFormat === 1
+            ? "csv"
+            : selectedFormat === 2
+            ? "xlsx"
+            : "xls");
         a.click();
         // if (JSON.parse(result).status === "success") {
         // } else {
@@ -111,6 +119,18 @@ const DownloadResults = (props) => {
         setSelectedFormat={setSelectedFormat}
         selectedFormat={selectedFormat}
       />
+      <Heading145>
+        Items selected :- ({" "}
+        {(
+          (deliverable ? props.deliverable : 0) +
+          (risky ? props.risky : 0) +
+          (undeliverable ? props.undeliverable : 0) +
+          (unknown ? props.unknown : 0)
+        )
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+        items )
+      </Heading145>
       <div className={classes.flexspace} style={{ marginTop: "3vh" }}>
         <BlueButton
           onClick={props.close.function.bind(this, props.close.value)}

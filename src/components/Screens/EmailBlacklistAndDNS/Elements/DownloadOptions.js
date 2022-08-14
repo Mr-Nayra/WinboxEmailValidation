@@ -14,11 +14,17 @@ const Block = (props) => {
       className={classes.button}
     >
       <h2 className={classes.heading}>{props.heading}</h2>
-      {props.view ? (
-        <input type="checkbox" checked={props.value} />
-      ) : (
-        <Heading145>No items</Heading145>
-      )}
+      <input
+        type="checkbox"
+        checked={props.value}
+        style={{ height: "2vh", visibility: props.view ? "visible" : "hidden" }}
+      />
+      <Heading145>
+        {props.view
+          ? props.view.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+            " items"
+          : "No items"}
+      </Heading145>
     </button>
   );
 };
@@ -32,7 +38,18 @@ const DownloadOptions = (props) => {
           onChange={props.downloadEverythingHandler}
           checked={props.downloadEverything}
         />
-        <Heading145>Download everything</Heading145>
+        <Heading145>
+          Download everything (
+          {(
+            props.deliverable +
+            props.undeliverable +
+            props.risky +
+            props.unknown
+          )
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+          items)
+        </Heading145>
       </div>
       <div
         className={classes.flexrow}

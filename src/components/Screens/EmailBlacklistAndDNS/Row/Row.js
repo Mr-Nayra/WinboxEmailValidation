@@ -11,7 +11,6 @@ const Row = (props) => {
   const [showPopUp, setShowPopUp] = useState("0");
 
   const deleteRow = (filename) => {
-    console.log(filename);
     props.deleteData(filename);
     setShowPopUp("0");
 
@@ -60,10 +59,10 @@ const Row = (props) => {
       {showPopUp === "2" && (
         <DownloadResults
           close={{ function: PopUpHandler, value: "0" }}
-          deliverable={!!props.deliverable}
-          risky={!!props.risky}
-          undeliverable={!!props.undeliverable}
-          unknown={!!props.unknown}
+          deliverable={props.deliverable}
+          risky={props.risky}
+          undeliverable={props.undeliverable}
+          unknown={props.unknown}
           file_name={props.file_name}
           display_name={props.display_name}
         />
@@ -79,11 +78,11 @@ const Row = (props) => {
         <p className={classes.head}>{props.undeliverable}</p>
         <p className={classes.head}>{props.unknown}</p>
         <div className={classes.head2}>
-          {props.status === "Completed" && (
-            <button className={classes.button} onClick={PopUpHandler} value="2">
-              <DownloadIcon />
-            </button>
-          )}
+          {/* {props.status === "Completed" && ( */}
+          <button className={classes.button} onClick={PopUpHandler} value="2">
+            <DownloadIcon />
+          </button>
+          {/* )} */}
           <button className={classes.button} onClick={PopUpHandler} value="1">
             <DeleteIcon />
           </button>

@@ -6,6 +6,7 @@ import Modal from "../../../UI/Modal/Modal";
 import Button from "../../../UI/Button/Button";
 import BlueButton from "../../../UI/BlueButton/Button";
 import Heading145 from "../../../UI/Heading/Heading";
+import FileUploadSuccessful from "./FileUploadSuccessful";
 
 let disabled = true;
 
@@ -13,6 +14,7 @@ const Runtest = (props) => {
   const [file, setFile] = useState("");
   const [fileData, setFileData] = useState();
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setloading] = useState(false);
 
   const uploadFileHandler = (event) => {
@@ -28,7 +30,6 @@ const Runtest = (props) => {
       setError("Please choose correct file type");
     }
   };
-  console.log(disabled);
 
   const saveHandler = () => {
     setloading(true);
@@ -57,7 +58,8 @@ const Runtest = (props) => {
       .then((result) => {
         setloading(false);
         if (JSON.parse(result).status === "success") {
-          setError("File Uploaded successfully");
+          setSuccess(true);
+          setTimeout(props.close.function.bind(this, props.close.value), 1500);
           setFile("");
           setFileData("");
           disabled = true;
@@ -73,6 +75,7 @@ const Runtest = (props) => {
 
   return (
     <>
+      {success && <FileUploadSuccessful />}
       <Modal onClick={props.close.function.bind(this, props.close.value)}>
         <div className={classes.flexend}>
           <div>

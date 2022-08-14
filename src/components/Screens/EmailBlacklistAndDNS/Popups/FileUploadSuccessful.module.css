@@ -1,0 +1,15 @@
+.modal {
+  z-index: 50;
+  width: 50vw;
+  padding: 1vh 1vw;
+  min-width: 400px;
+  padding: 2vh 1vw;
+}
+
+.backdropClass {
+  z-index: 40;
+}
+
+.heading {
+  text-align: center;
+}
