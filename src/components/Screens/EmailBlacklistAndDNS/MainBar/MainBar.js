@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
 
-import classes from "./Mainbar.module.css";
 import Hero from "../../../Elements/Hero/Hero";
 import Loader from "../../../Elements/Loader/Loader";
 import Details from "../Details0/Details";
@@ -43,24 +42,38 @@ const MainBar = () => {
           );
 
           request2.onreadystatechange = function () {
-            console.log(this.response);
             if (this.readyState === 4 && this.status === 200) {
               const text = JSON.parse(this.responseText);
               if (text.state === "SUCCESS") {
                 d[i].status = "Completed";
-                d[i].a = "Complete";
+                d[i].a = 100;
               } else if (text.state === "PROGRESS") {
                 d[i].status = "Running";
-                d[i].a = `${text.details.current}/${text.details.total}`;
+                d[i].a = (text.details.current / text.details.total) * 100;
+                d[i].total_emails = text.details.total;
                 let socket = new WebSocket(
                   "ws://3.110.124.94:8000/task/progress/" + task_id
                 );
                 socket.onmessage = (event) => {
                   const s = JSON.parse(event.data);
-                  setDa(
-                    d.map((item) =>
+                  setDa((prev) =>
+                    prev.map((item) =>
                       item.task_id === task_id
-                        ? { ...item, a: `${s.meta.current}/${s.meta.total}` }
+                        ? { ...item, a: (s.meta.current / s.meta.total) * 100 }
+                        : item
+                    )
+                  );
+                  if (s.meta.current === s.meta.total) {
+                    socket.close();
+                  }
+                };
+
+                socket.onclose = (event) => {
+                  d[i].status = "Completed";
+                  setDa((prev) =>
+                    prev.map((item) =>
+                      item.task_id === task_id
+                        ? { ...item, status: "Completed" }
                         : item
                     )
                   );
@@ -306,7 +319,8 @@ const MainBar = () => {
             file_name={rowdetail.file_name}
             created={rowdetail.created.slice(0, 10)}
             status={rowdetail.status}
-            deliverable={rowdetail.a}
+            progress={rowdetail.a}
+            deliverable={rowdetail.deliverable}
             undeliverable={rowdetail.total_undeliverable}
             total={rowdetail.total_emails}
             risky={rowdetail.total_risky}

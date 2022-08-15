@@ -73,9 +73,14 @@ const Row = (props) => {
         <p className={classes.head}>{props.status}</p>
         <p className={classes.head}>{props.created}</p>
         <p className={classes.head}>{props.total}</p>
-        <p className={classes.head} style={{ flex: 5 }}>
-          {props.deliverable}
-        </p>
+        <div className={classes.head} style={{ flex: 2 }}>
+          <div className={classes.progresssBar}>
+            <div
+              className={classes.progress}
+              style={{ width: `${props.progress}%` }}
+            ></div>
+          </div>
+        </div>
         <div className={classes.head2}>
           {props.status === "Completed" && (
             <button className={classes.button} onClick={PopUpHandler} value="2">

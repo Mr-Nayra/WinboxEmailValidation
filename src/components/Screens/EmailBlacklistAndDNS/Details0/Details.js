@@ -17,17 +17,14 @@ const Details = (props) => {
       <ColHead className={classes.head} onClick={props.total}>
         Total
       </ColHead>
-      <ColHead className={classes.head} onClick={props.deliverable}>
-        Deliverable
-      </ColHead>
-      <ColHead className={classes.head} onClick={props.risky}>
-        Risky
-      </ColHead>
-      <ColHead className={classes.head} onClick={props.undeliverable}>
-        Undeliverable
-      </ColHead>
-      <ColHead className={classes.head} onClick={props.unknown}>
-        Unknown
+
+      <ColHead
+        className={classes.head}
+        onClick={props.unknown}
+        style={{ flex: 2 }}
+        noArrow
+      >
+        Progress
       </ColHead>
       <ColHead className={classes.headlast} noArrow>
         Actions
