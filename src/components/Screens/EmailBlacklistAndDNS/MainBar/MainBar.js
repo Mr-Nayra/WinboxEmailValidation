@@ -32,6 +32,7 @@ const MainBar = () => {
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         const d = JSON.parse(this.responseText).validation_lists;
+        setDa(d);
         for (let i = 0; i < d.length; i++) {
           const task_id = d[i].task_id;
           var request2 = new XMLHttpRequest();
@@ -45,12 +46,36 @@ const MainBar = () => {
             if (this.readyState === 4 && this.status === 200) {
               const text = JSON.parse(this.responseText);
               if (text.state === "SUCCESS") {
-                d[i].status = "Completed";
-                d[i].a = 100;
+                setDa((prev) =>
+                  prev.map((item) =>
+                    item.task_id === task_id
+                      ? {
+                          ...item,
+                          status: "Completed",
+                          a: {
+                            current: d[i].total_emails,
+                            total: d[i].total_emails,
+                          },
+                        }
+                      : item
+                  )
+                );
               } else if (text.state === "PROGRESS") {
-                d[i].status = "Running";
-                d[i].a = (text.details.current / text.details.total) * 100;
-                d[i].total_emails = text.details.total;
+                setDa((prev) =>
+                  prev.map((item) =>
+                    item.task_id === task_id
+                      ? {
+                          ...item,
+                          status: "Running",
+                          a: {
+                            current: text.details.current,
+                            total: text.details.total,
+                          },
+                          total_emails: text.details.total,
+                        }
+                      : item
+                  )
+                );
                 let socket = new WebSocket(
                   "ws://3.110.124.94:8000/task/progress/" + task_id
                 );
@@ -59,7 +84,10 @@ const MainBar = () => {
                   setDa((prev) =>
                     prev.map((item) =>
                       item.task_id === task_id
-                        ? { ...item, a: (s.meta.current / s.meta.total) * 100 }
+                        ? {
+                            ...item,
+                            a: { current: s.meta.current, total: s.meta.total },
+                          }
                         : item
                     )
                   );
@@ -69,6 +97,7 @@ const MainBar = () => {
                 };
 
                 socket.onclose = (event) => {
+                  console.log(event);
                   d[i].status = "Completed";
                   setDa((prev) =>
                     prev.map((item) =>
@@ -80,7 +109,6 @@ const MainBar = () => {
                 };
               }
               if (i === d.length - 1) {
-                setDa(d);
                 setLoading(false);
               }
             }
@@ -181,90 +209,6 @@ const MainBar = () => {
     setLoading(false);
   };
 
-  const deliverableFunc = (ass) => {
-    setLoading(true);
-    const a = [...da];
-    a.sort((a, b) =>
-      a.total_deliverable > b.total_deliverable
-        ? 1
-        : b.total_deliverable > a.total_deliverable
-        ? -1
-        : 0
-    );
-    if (ass) {
-      if (ass) {
-        setDa(a);
-      } else {
-        setDa(a.reverse());
-      }
-    } else {
-      setDa(a.reverse());
-    }
-    setLoading(false);
-  };
-
-  const riskyFunc = (ass) => {
-    setLoading(true);
-    const a = [...da];
-    a.sort((a, b) =>
-      a.total_risky > b.total_risky ? 1 : b.total_risky > a.total_risky ? -1 : 0
-    );
-    if (ass) {
-      if (ass) {
-        setDa(a);
-      } else {
-        setDa(a.reverse());
-      }
-    } else {
-      setDa(a.reverse());
-    }
-    setLoading(false);
-  };
-
-  const undeliverableFunc = (ass) => {
-    setLoading(true);
-    const a = [...da];
-    a.sort((a, b) =>
-      a.total_undeliverable > b.total_undeliverable
-        ? 1
-        : b.total_undeliverable > a.total_undeliverable
-        ? -1
-        : 0
-    );
-    if (ass) {
-      if (ass) {
-        setDa(a);
-      } else {
-        setDa(a.reverse());
-      }
-    } else {
-      setDa(a.reverse());
-    }
-    setLoading(false);
-  };
-
-  const unknownFunc = (ass) => {
-    setLoading(true);
-    const a = [...da];
-    a.sort((a, b) =>
-      a.total_unknown > b.total_unknown
-        ? 1
-        : b.total_unknown > a.total_unknown
-        ? -1
-        : 0
-    );
-    if (ass) {
-      if (ass) {
-        setDa(a);
-      } else {
-        setDa(a.reverse());
-      }
-    } else {
-      setDa(a.reverse());
-    }
-    setLoading(false);
-  };
-
   const deleteData = (filename) => {
     setDa((prev) =>
       prev.filter(function (row) {
@@ -302,10 +246,6 @@ const MainBar = () => {
         status={statusFunc}
         date={dateFunc}
         total={totalFunc}
-        deliverable={deliverableFunc}
-        risky={riskyFunc}
-        undeliverable={undeliverableFunc}
-        unknown={unknownFunc}
       />
 
       {loading ? (
@@ -320,7 +260,7 @@ const MainBar = () => {
             created={rowdetail.created.slice(0, 10)}
             status={rowdetail.status}
             progress={rowdetail.a}
-            deliverable={rowdetail.deliverable}
+            deliverable={rowdetail.total_deliverable}
             undeliverable={rowdetail.total_undeliverable}
             total={rowdetail.total_emails}
             risky={rowdetail.total_risky}

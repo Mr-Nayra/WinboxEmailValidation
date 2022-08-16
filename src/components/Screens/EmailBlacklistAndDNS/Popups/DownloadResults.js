@@ -18,8 +18,6 @@ const DownloadResults = (props) => {
   const [downloadEverything, setDownloadEverything] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState(1);
 
-  console.log(selectedFormat);
-
   const downloadEverythingHandler = () => {
     setDownloadEverything((prev) => {
       if (!prev) {

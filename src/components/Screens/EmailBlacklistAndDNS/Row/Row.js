@@ -77,8 +77,15 @@ const Row = (props) => {
           <div className={classes.progresssBar}>
             <div
               className={classes.progress}
-              style={{ width: `${props.progress}%` }}
+              style={{
+                width: `${
+                  (props.progress.current / props.progress.total) * 100
+                }%`,
+              }}
             ></div>
+            <p className={classes.progressp}>
+              {props.progress.current} / {props.progress.total}
+            </p>
           </div>
         </div>
         <div className={classes.head2}>

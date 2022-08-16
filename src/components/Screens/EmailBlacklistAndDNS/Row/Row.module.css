@@ -51,4 +51,15 @@
   height: 2vh;
   background-color: #2195f3;
   z-index: 1;
+  transition: width 0.5s;
+}
+
+.progressp {
+  position: relative;
+  top: -1.91vh;
+  z-index: 2;
+  font-size: 1.8vh;
+  color: white !important;
+  font-weight: 600 !important;
+  text-align: center;
 }

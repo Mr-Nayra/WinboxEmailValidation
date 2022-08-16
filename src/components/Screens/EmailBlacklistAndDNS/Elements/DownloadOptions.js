@@ -40,12 +40,10 @@ const DownloadOptions = (props) => {
         />
         <Heading145>
           Download everything (
-          {(
-            props.deliverable +
-            props.undeliverable +
-            props.risky +
-            props.unknown
-          )
+          {props.options
+            .reduce(function (a, b) {
+              return a + b;
+            }, 0)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
           items)
