@@ -34,9 +34,9 @@ const DownloadResults = (props) => {
   const submitHandler = () => {
     const a = [];
     deliverable && a.push("Deliverable");
-    undeliverable && a.push("Risky");
-    unknown && a.push("Undeliverable");
-    risky && a.push("Unknown");
+    risky && a.push("Risky");
+    undeliverable && a.push("Undeliverable");
+    unknown && a.push("Unknown");
 
     setLoading(true);
     var formdata = new FormData();
@@ -65,6 +65,7 @@ const DownloadResults = (props) => {
       })
       .then((data) => {
         setLoading(false);
+        console.log(data);
         var a = document.createElement("a");
         a.href = window.URL.createObjectURL(data);
         a.download =
