@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import classes from "./Mainbar.module.css";
 
 import Hero from "../../../Elements/Hero/Hero";
 import Loader from "../../../Elements/Loader/Loader";
@@ -6,6 +7,8 @@ import Details from "../Details0/Details";
 import Step2 from "../Popups/Step2";
 import Row from "../Row/Row";
 import Step1 from "../Popups/Step1";
+import Card from "../../../UI/Card/Card";
+import Heading145 from "../../../UI/Heading/Heading";
 
 var software;
 var request = new XMLHttpRequest();
@@ -29,6 +32,9 @@ const MainBar = () => {
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         const d = JSON.parse(this.responseText).validation_lists;
+        if (d.length === 0) {
+          setLoading(false);
+        }
         setDa(d);
         for (let i = 0; i < d.length; i++) {
           const task_id = d[i].task_id;
@@ -263,8 +269,7 @@ const MainBar = () => {
 
       {loading ? (
         <Loader />
-      ) : (
-        da &&
+      ) : da.length !== 0 ? (
         da.map((rowdetail) => (
           <Row
             key={rowdetail.created}
@@ -288,6 +293,10 @@ const MainBar = () => {
             deleteData={deleteData}
           />
         ))
+      ) : (
+        <Card className={classes.container}>
+          <Heading145>No data to display</Heading145>
+        </Card>
       )}
     </>
   );
