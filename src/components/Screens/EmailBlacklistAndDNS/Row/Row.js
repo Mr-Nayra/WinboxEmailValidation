@@ -25,7 +25,7 @@ const Row = (props) => {
       redirect: "follow",
     };
     fetch(
-      "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/",
+      "https://validation.getwinbox.co/validation/",
       requestOptions
     )
       .then((response) => {

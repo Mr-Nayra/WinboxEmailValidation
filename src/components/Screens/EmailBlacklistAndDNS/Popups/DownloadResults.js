@@ -10,6 +10,7 @@ import Radio from "../Elements/Radio";
 import DownloadOptions from "../Elements/DownloadOptions";
 
 const DownloadResults = (props) => {
+  console.log(props);
   const [loading, setLoading] = useState(false);
   const [deliverable, setDeliverable] = useState(false);
   const [risky, setRisky] = useState(false);
@@ -53,7 +54,7 @@ const DownloadResults = (props) => {
       redirect: "follow",
     };
     fetch(
-      "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/download_file/",
+      "https://validation.getwinbox.co/validation/download_file/",
       requestOptions
     )
       .then((response) => {

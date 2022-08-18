@@ -24,10 +24,7 @@ const MainBar = () => {
 
   useLayoutEffect(() => {
     setLoading(true);
-    request.open(
-      "GET",
-      "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/"
-    );
+    request.open("GET", "https://validation.getwinbox.co/validation/");
 
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
@@ -38,8 +35,7 @@ const MainBar = () => {
           var request2 = new XMLHttpRequest();
           request2.open(
             "GET",
-            "https://intense-escarpment-67229.herokuapp.com/http://3.110.124.94:8000/validation/get_progress/" +
-              task_id
+            "https://validation.getwinbox.co/validation/get_progress/" + task_id
           );
 
           request2.onreadystatechange = function () {
@@ -77,27 +73,44 @@ const MainBar = () => {
                   )
                 );
                 let socket = new WebSocket(
-                  "ws://3.110.124.94:8000/task/progress/" + task_id
+                  "wss://validation.getwinbox.co:8000/task/progress/" + task_id
                 );
                 socket.onmessage = (event) => {
                   const s = JSON.parse(event.data);
-                  setDa((prev) =>
-                    prev.map((item) =>
-                      item.task_id === task_id
-                        ? {
-                            ...item,
-                            a: { current: s.meta.current, total: s.meta.total },
-                          }
-                        : item
-                    )
-                  );
-                  if (s.meta.current === s.meta.total) {
+                  if (s.state === "PROGRESS") {
+                    setDa((prev) =>
+                      prev.map((item) =>
+                        item.task_id === task_id
+                          ? {
+                              ...item,
+                              a: {
+                                current: s.meta.current,
+                                total: s.meta.total,
+                              },
+                            }
+                          : item
+                      )
+                    );
+                  } else if (s.state === "COMPLETED") {
+                    setDa((prev) =>
+                      prev.map((item) =>
+                        item.task_id === task_id
+                          ? {
+                              ...item,
+                              total_emails: s.meta.total_emails,
+                              total_deliverable: s.meta.total_deliverable,
+                              total_risky: s.meta.total_risky,
+                              total_undeliverable: s.meta.total_undeliverable,
+                              total_unknown: s.meta.total_unknown,
+                            }
+                          : item
+                      )
+                    );
                     socket.close();
                   }
                 };
 
                 socket.onclose = (event) => {
-                  console.log(event);
                   d[i].status = "Completed";
                   setDa((prev) =>
                     prev.map((item) =>
@@ -259,7 +272,14 @@ const MainBar = () => {
             file_name={rowdetail.file_name}
             created={rowdetail.created.slice(0, 10)}
             status={rowdetail.status}
-            progress={rowdetail.a}
+            progress={
+              rowdetail.a
+                ? rowdetail.a
+                : {
+                    current: rowdetail.total_emails,
+                    total: rowdetail.total_emails,
+                  }
+            }
             deliverable={rowdetail.total_deliverable}
             undeliverable={rowdetail.total_undeliverable}
             total={rowdetail.total_emails}
