@@ -45,10 +45,7 @@ const Runtest = (props) => {
       redirect: "follow",
     };
 
-    fetch(
-      "https://validation.getwinbox.co/validation/",
-      requestOptions
-    )
+    fetch("https://validation.getwinbox.co/validation/", requestOptions)
       .then((response) => {
         if (response.status === 401) {
           window.location.reload();
@@ -106,11 +103,11 @@ const Runtest = (props) => {
                   alignItems: "center",
                 }}
               >
-                <div className={classes.input}>
+                <p className={classes.input}>
                   {fileData && fileData !== ""
                     ? fileData.name
                     : "No files Selected"}
-                </div>
+                </p>
                 <div className={classes.button}>Select File</div>
               </label>
               <p
