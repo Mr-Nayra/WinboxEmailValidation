@@ -18,3 +18,9 @@
     font-weight: 400;
     margin-top: 0.5vh;
 }
+
+@media (max-width: 480px) {
+    .parah {
+        font-size: 1.3vh;
+    }
+}

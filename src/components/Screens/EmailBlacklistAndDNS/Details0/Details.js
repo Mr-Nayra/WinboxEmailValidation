@@ -5,13 +5,16 @@ import ColHead from "./ColHead";
 const Details = (props) => {
   return (
     <Card className={classes.background}>
-      <ColHead className={classes.head} onClick={props.name}>
+      <ColHead
+        className={`${classes.head} ${classes.firstChild}`}
+        onClick={props.name}
+      >
         Name
       </ColHead>
       <ColHead className={classes.head} onClick={props.status}>
         Status
       </ColHead>
-      <ColHead className={classes.head} onClick={props.date}>
+      <ColHead className={`${classes.head} hide`} onClick={props.date}>
         Upload date
       </ColHead>
       <ColHead className={classes.head} onClick={props.total}>

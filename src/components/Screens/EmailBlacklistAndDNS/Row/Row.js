@@ -24,10 +24,7 @@ const Row = (props) => {
       //   }),
       redirect: "follow",
     };
-    fetch(
-      "https://validation.getwinbox.co/validation/",
-      requestOptions
-    )
+    fetch("https://validation.getwinbox.co/validation/", requestOptions)
       .then((response) => {
         if (response.status === 401) {
           window.location.reload();
@@ -69,9 +66,11 @@ const Row = (props) => {
       )}
 
       <Card className={classes.background}>
-        <p className={classes.head}>{props.display_name}</p>
+        <p className={`${classes.head} ${classes.firstChild}`}>
+          {props.display_name}
+        </p>
         <p className={classes.head}>{props.status}</p>
-        <p className={classes.head}>{props.created}</p>
+        <p className={`${classes.head} hide`}>{props.created}</p>
         <p className={classes.head}>{props.total}</p>
         <div className={classes.head} style={{ flex: 2 }}>
           <div className={classes.progresssBar}>

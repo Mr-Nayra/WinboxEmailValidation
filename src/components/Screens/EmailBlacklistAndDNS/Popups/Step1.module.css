@@ -35,3 +35,9 @@
     color: #de5246;
     display: inline;
 }
+
+@media (max-width: 480px) {
+    .parah {
+        font-size: 1.3vh;
+    }
+}

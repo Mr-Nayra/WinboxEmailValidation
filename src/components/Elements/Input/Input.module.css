@@ -1,5 +1,6 @@
 .container {
   padding: 1vh 0;
+  width: 100%;
 }
 
 .parah {
@@ -26,4 +27,15 @@
   font-size: 1.88vh;
   color: #323c47;
   font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  .input {
+    width: 100%;
+    padding: 1.5vh 2vw;
+  }
+
+  .parah {
+    font-size: 1.3vh;
+  }
 }

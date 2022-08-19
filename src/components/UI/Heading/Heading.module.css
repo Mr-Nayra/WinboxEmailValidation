@@ -15,6 +15,7 @@
   font-size: 3.76vh;
   color: #323c47;
 }
+
 .heading327 {
   font-weight: 700;
   font-size: 3.76vh;
@@ -27,8 +28,24 @@
   color: #323c47;
 }
 
-.error{
+.error {
   font-weight: 500;
   font-size: 1.65vh;
   color: #FC7676;
+}
+
+@media (max-width: 480px) {
+  .heading326 {
+    font-size: 3vh;
+  }
+
+  .heading {
+    font-weight: 500;
+    font-size: 1.3vh;
+  }
+
+  .heading186 {
+    font-weight: 600;
+    font-size: 1.6vh;
+  }
 }

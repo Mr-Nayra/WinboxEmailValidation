@@ -27,3 +27,11 @@
 .removeStyle {
   text-decoration: none;
 }
+
+@media (max-width: 480px) {
+  .button {
+    font-size: 1.3vh;
+    height: auto;
+    padding: 1.2vh 0;
+  }
+}
