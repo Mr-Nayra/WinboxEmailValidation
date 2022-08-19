@@ -11,7 +11,7 @@ const Details = (props) => {
       >
         Name
       </ColHead>
-      <ColHead className={classes.head} onClick={props.status}>
+      <ColHead className={`${classes.head} hide`} onClick={props.status}>
         Status
       </ColHead>
       <ColHead className={`${classes.head} hide`} onClick={props.date}>

@@ -30,7 +30,7 @@ const Block = (props) => {
 };
 const DownloadOptions = (props) => {
   return (
-    <div style={{ margin: "2vh  0" }}>
+    <div className={classes.container}>
       <div className={classes.flexrow}>
         <input
           type="checkbox"
@@ -50,7 +50,7 @@ const DownloadOptions = (props) => {
         </Heading145>
       </div>
       <div
-        className={classes.flexrow}
+        className={classes.flexrow1}
         style={{ justifyContent: "space-between", marginTop: "1vh" }}
       >
         <Block

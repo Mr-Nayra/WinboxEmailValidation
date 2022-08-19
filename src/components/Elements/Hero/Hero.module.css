@@ -1,23 +1,36 @@
 .background {
-  height: 12.7vh;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 2vh 1vw;
 }
 
-.background div {
-  margin: 0 1vw;
-}
-
-.heading{
+.heading {
   font-weight: 600;
   font-size: 3.76vh;
+  line-height: 110%;
 }
 
-.parah{
-  margin-top: 1vh;
+.parah {
+  margin-top: 0.5vh;
   font-weight: 400;
   font-size: 1.65vh;
   color: #707683;
+}
+
+@media (max-width: 480px) {
+  .background {
+    padding: 1.5vh 2vw;
+  }
+
+  .heading {
+    font-size: 3vh;
+  }
+
+  .parah {
+    margin-top: 1vh;
+    font-size: 1.3vh;
+  }
 }

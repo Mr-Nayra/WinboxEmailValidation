@@ -69,7 +69,7 @@ const Row = (props) => {
         <p className={`${classes.head} ${classes.firstChild}`}>
           {props.display_name}
         </p>
-        <p className={classes.head}>{props.status}</p>
+        <p className={`${classes.head} hide`}>{props.status}</p>
         <p className={`${classes.head} hide`}>{props.created}</p>
         <p className={classes.head}>{props.total}</p>
         <div className={classes.head} style={{ flex: 2 }}>
@@ -93,7 +93,11 @@ const Row = (props) => {
               <DownloadIcon />
             </button>
           )}
-          <button className={classes.button} onClick={PopUpHandler} value="1">
+          <button
+            className={`${classes.button} hide`}
+            onClick={PopUpHandler}
+            value="1"
+          >
             <DeleteIcon />
           </button>
         </div>

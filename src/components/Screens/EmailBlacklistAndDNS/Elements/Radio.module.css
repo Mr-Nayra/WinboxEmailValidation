@@ -22,5 +22,22 @@
 @media (max-width: 480px) {
     .parah {
         font-size: 1.3vh;
+        margin: 0 0 0 1vw;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin: 1vh 0;
+    }
+
+    .flexrow {
+        display: flex;
+        align-items: center;
+    }
+
+    .flexr {
+        display: flex;
+        align-items: flex-start;
     }
 }

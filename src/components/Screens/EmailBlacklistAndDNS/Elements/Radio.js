@@ -9,7 +9,7 @@ const Checkboxes = (props) => {
 
   return (
     <div className={classes.container}>
-      <div style={{ flex: 1, margin: "0 0.25vw" }}>
+      <div style={{ flex: 1, margin: "0 0.25vw" }} className={classes.flexr}>
         <div className={classes.flexrow}>
           <input
             className={classes.input}
@@ -26,7 +26,7 @@ const Checkboxes = (props) => {
           spreadsheets and database softwares
         </p>
       </div>
-      <div style={{ flex: 1, margin: "0 0.25vw" }}>
+      <div style={{ flex: 1, margin: "0 0.25vw" }} className={classes.flexr}>
         <div className={classes.flexrow}>
           <input
             className={classes.input}
@@ -43,7 +43,7 @@ const Checkboxes = (props) => {
           2007 or newer
         </p>
       </div>
-      <div style={{ flex: 1, margin: "0 0.25vw" }}>
+      <div style={{ flex: 1, margin: "0 0.25vw" }} className={classes.flexr}>
         <div className={classes.flexrow}>
           <input
             className={classes.input}
