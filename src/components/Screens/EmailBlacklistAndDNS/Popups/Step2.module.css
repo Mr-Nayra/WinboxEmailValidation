@@ -71,4 +71,10 @@
   .parah {
     font-size: 1.2vh;
   }
+
+  .button {
+    font-size: 1.3vh;
+    height: auto;
+    padding: 1.2vh 0;
+  }
 }
