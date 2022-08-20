@@ -31,7 +31,7 @@
 }
 
 .button {
-  width: 1.5vw;
+  width: auto;
   height: 2.8vh;
   border: none;
   background: none;
@@ -85,7 +85,4 @@
     top: -2.9vh;
   }
 
-  .button {
-    margin-right: 4vw;
-  }
 }
